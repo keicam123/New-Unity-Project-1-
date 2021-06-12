@@ -5,8 +5,8 @@ using UnityEngine;
 public class PlayerHazard : MonoBehaviour
 {
 
-    public Vector2 PushCharacter { get; set; } = new Vector2(0f, 5f);
-    public int Damage { get; set; } = 1;
+    [SerializeField]  public Vector2 PushCharacter = new Vector2(0f, 5f);
+    [SerializeField] public int Damage = 1;
     public void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player"))

@@ -7,14 +7,14 @@ public class CharacterStats : MonoBehaviour
 {
     public Animator animator;
  
-    public int Health { get; set; } = 3;
-    public int Score { get; set; } = 0;
+    public int Health = 3;
+    public int Score = 0;
 
     public void takeDamage(int dmg = 1)
     {
         Health -= dmg;
         animator.SetBool("IsHurt", true);
-        if (Health == 0)
+        if (Health <= 0)
         {
             killCharacter();
         }
