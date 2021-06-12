@@ -5,7 +5,7 @@ using UnityEngine;
 public class playermovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    public coin coin_scr;
+    // public coin coin_scr;
     public Animator animator;
     void start()
     {
@@ -19,7 +19,7 @@ public class playermovement : MonoBehaviour
     {
         horizontalMove = Input.GetAxisRaw("Horizontal") * runSpeed;
         animator.SetFloat("Speed", Mathf.Abs(horizontalMove));
-       
+
         if (Input.GetButtonDown("Jump"))
         {
             jump = true;
@@ -37,18 +37,8 @@ public class playermovement : MonoBehaviour
             animator.SetBool("IsCrouching", false);
         }
     }
-    void OnTriggerEnter2D(Collider2D Player)
-    {
-        if (Player.CompareTag("spike"))
-        {
-            jump = true;
-            animator.SetBool("IsHurt", true);
-        }
-        if (Player.CompareTag("Coin"))
-        {
-                points += 1;
-        }
-    }
+
+
     public void OnLanding()
     {
         animator.SetBool("IsJumping", false);

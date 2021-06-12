@@ -2,17 +2,12 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class coin : MonoBehaviour
+public class coin : PlayerPickable
 {
-    public void OnTriggerEnter2D(Collider2D other)
+
+    protected override void pickUpItem(GameObject player)
     {
-        if (other.CompareTag("Player"))
-        {
-            Destroy(gameObject);
-        }
+        player.GetComponent<CharacterStats>().Score += 100;
+        //GameObject.Destroy(this.gameObject);
     }
-    void Update()
-    {
- 
-    } 
 }
