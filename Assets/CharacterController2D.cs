@@ -56,8 +56,6 @@ public class CharacterController2D : MonoBehaviour
 			}
 		}
 	}
-
-
 	public void Move(float move, bool crouch, bool jump)
 	{
 		if (!crouch)
@@ -110,8 +108,6 @@ public class CharacterController2D : MonoBehaviour
 			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
-
-
 	private void Flip()
 	{
 		m_FacingRight = !m_FacingRight;

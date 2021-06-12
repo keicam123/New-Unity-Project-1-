@@ -5,14 +5,12 @@ using UnityEngine;
 public class playermovement : MonoBehaviour
 {
     public CharacterController2D controller;
-    // public coin coin_scr;
     public Animator animator;
     void start()
     {
     }
     public float runSpeed = 40f;
     float horizontalMove = 0f;
-    public int points = 0;
     bool jump = false;
     bool crouch = false;
     void Update()
