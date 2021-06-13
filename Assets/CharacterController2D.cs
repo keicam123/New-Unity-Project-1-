@@ -3,7 +3,7 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-	[SerializeField] private float m_JumpForce = 400f;                          
+	[SerializeField] private float JumpForce = 400f;                          
 	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          
 	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  
 	[SerializeField] private bool m_AirControl = false;                         
@@ -105,7 +105,7 @@ public class CharacterController2D : MonoBehaviour
 		if (m_Grounded && jump)
 		{
 			m_Grounded = false;
-			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
+			m_Rigidbody2D.AddForce(new Vector2(0f, JumpForce));
 		}
 	}
 	private void Flip()
