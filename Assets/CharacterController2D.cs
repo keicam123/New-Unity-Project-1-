@@ -3,21 +3,21 @@ using UnityEngine.Events;
 
 public class CharacterController2D : MonoBehaviour
 {
-	[SerializeField] private float JumpForce = 400f;                          
-	[Range(0, 1)] [SerializeField] private float CrouchSpeed = .36f;          
-	[Range(0, .3f)] [SerializeField] private float MovementSmoothing = .05f;  
-	[SerializeField] private bool AirControl = false;                         
-	[SerializeField] private LayerMask Ground;                          
-	[SerializeField] private Transform GroundCheck;                           
-	[SerializeField] private Transform CeilingCheck;                          
-	[SerializeField] private Collider2D CrouchDisable;                
+	[SerializeField] private float m_JumpForce = 400f;                          
+	[Range(0, 1)] [SerializeField] private float m_CrouchSpeed = .36f;          
+	[Range(0, .3f)] [SerializeField] private float m_MovementSmoothing = .05f;  
+	[SerializeField] private bool m_AirControl = false;                         
+	[SerializeField] private LayerMask m_WhatIsGround;                          
+	[SerializeField] private Transform m_GroundCheck;                           
+	[SerializeField] private Transform m_CeilingCheck;                          
+	[SerializeField] private Collider2D m_CrouchDisableCollider;                
 
-	const float GroundedRadius = .2f; 
-	private bool Grounded;            
-	const float CeilingRadius = .2f; 
-	private Rigidbody2D rb2D;
-	private bool mRight = true;  
-	private Vector3 Velocity = Vector3.zero;
+	const float k_GroundedRadius = .2f; 
+	private bool m_Grounded;            
+	const float k_CeilingRadius = .2f; 
+	private Rigidbody2D m_Rigidbody2D;
+	private bool m_FacingRight = true;  
+	private Vector3 m_Velocity = Vector3.zero;
 
 	[Header("Events")]
 	[Space]
@@ -28,11 +28,11 @@ public class CharacterController2D : MonoBehaviour
 	public class BoolEvent : UnityEvent<bool> { }
 
 	public BoolEvent OnCrouchEvent;
-	private bool wasCrouching = false;
+	private bool m_wasCrouching = false;
 
 	private void Awake()
 	{
-		rb2D = GetComponent<Rigidbody2D>();
+		m_Rigidbody2D = GetComponent<Rigidbody2D>();
 
 		if (OnLandEvent == null)
 			OnLandEvent = new UnityEvent();
@@ -43,14 +43,14 @@ public class CharacterController2D : MonoBehaviour
 
 	private void FixedUpdate()
 	{
-		bool wasGrounded = Grounded;
-		Grounded = false;
-		Collider2D[] colliders = Physics2D.OverlapCircleAll(GroundCheck.position, GroundedRadius, Ground);
+		bool wasGrounded = m_Grounded;
+		m_Grounded = false;
+		Collider2D[] colliders = Physics2D.OverlapCircleAll(m_GroundCheck.position, k_GroundedRadius, m_WhatIsGround);
 		for (int i = 0; i < colliders.Length; i++)
 		{
 			if (colliders[i].gameObject != gameObject)
 			{
-				Grounded = true;
+				m_Grounded = true;
 				if (!wasGrounded)
 					OnLandEvent.Invoke();
 			}
@@ -60,57 +60,57 @@ public class CharacterController2D : MonoBehaviour
 	{
 		if (!crouch)
 		{
-			if (Physics2D.OverlapCircle(CeilingCheck.position, CeilingRadius, Ground))
+			if (Physics2D.OverlapCircle(m_CeilingCheck.position, k_CeilingRadius, m_WhatIsGround))
 			{
 				crouch = true;
 			}
 		}
-		if (Grounded || AirControl)
+		if (m_Grounded || m_AirControl)
 		{
 			if (crouch)
 			{
-				if (!wasCrouching)
+				if (!m_wasCrouching)
 				{
-					wasCrouching = true;
+					m_wasCrouching = true;
 					OnCrouchEvent.Invoke(true);
 				}
-				move *= CrouchSpeed;
+				move *= m_CrouchSpeed;
 
-				if (CrouchDisable != null)
-					CrouchDisable.enabled = false;
+				if (m_CrouchDisableCollider != null)
+					m_CrouchDisableCollider.enabled = false;
 			}
 			else
 			{
-				if (CrouchDisable != null)
-					CrouchDisable.enabled = true;
+				if (m_CrouchDisableCollider != null)
+					m_CrouchDisableCollider.enabled = true;
 
-				if (wasCrouching)
+				if (m_wasCrouching)
 				{
-					wasCrouching = false;
+					m_wasCrouching = false;
 					OnCrouchEvent.Invoke(false);
 				}
 			}
-			Vector3 targetVelocity = new Vector2(move * 10f, rb2D.velocity.y);
-			rb2D.velocity = Vector3.SmoothDamp(rb2D.velocity, targetVelocity, ref Velocity, MovementSmoothing);
+			Vector3 targetVelocity = new Vector2(move * 10f, m_Rigidbody2D.velocity.y);
+			m_Rigidbody2D.velocity = Vector3.SmoothDamp(m_Rigidbody2D.velocity, targetVelocity, ref m_Velocity, m_MovementSmoothing);
 
-			if (move > 0 && !mRight)
+			if (move > 0 && !m_FacingRight)
 			{
 				Flip();
 			}
-			else if (move < 0 && mRight)
+			else if (move < 0 && m_FacingRight)
 			{
 				Flip();
 			}
 		}
-		if (Grounded && jump)
+		if (m_Grounded && jump)
 		{
-			Grounded = false;
-			rb2D.AddForce(new Vector2(0f, JumpForce));
+			m_Grounded = false;
+			m_Rigidbody2D.AddForce(new Vector2(0f, m_JumpForce));
 		}
 	}
 	private void Flip()
 	{
-		mRight = !mRight;
+		m_FacingRight = !m_FacingRight;
 
 		Vector3 theScale = transform.localScale;
 		theScale.x *= -1;

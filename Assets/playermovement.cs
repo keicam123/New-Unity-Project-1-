@@ -4,9 +4,7 @@ public class playermovement : MonoBehaviour
 {
     public CharacterController2D controller;
     public Animator animator;
-    void start()
-    {
-    }
+    public CharacterStats stat;
     public float runSpeed = 40f;
     float horizontalMove = 0f;
     bool jump = false;
