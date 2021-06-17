@@ -6,7 +6,7 @@ public class CharacterStats : MonoBehaviour
     public Animator animator;
 
     public int Health = 3;
-    public int Score = 0;
+    public int Points = 0;
     public void takeDamage(int dmg = 1)
     {
         Health -= dmg;

@@ -12,6 +12,7 @@ public class PlayerPickable : MonoBehaviour
 
             pickUpItem(other.gameObject);
             Destroy(gameObject);
+            
         }
     }
 

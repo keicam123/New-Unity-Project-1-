@@ -20,7 +20,7 @@
   <Class Name="CharacterStats">
     <Position X="7.75" Y="0.5" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>BAAACAAAAAAAAAgAAAAAAAIAAAAAAACAAAAAAAAAAAA=</HashCode>
+      <HashCode>BAAACAAAAAAAgAAAAAAAAAIAAAAAAACAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\CharacterStats.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -32,7 +32,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerPickable">
-    <Position X="10.75" Y="3" Width="1.5" />
+    <Position X="10.75" Y="3.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAEAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\PlayerPickable.cs</FileName>
@@ -41,7 +41,7 @@
   <Class Name="coin">
     <Position X="9.75" Y="1" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAAAAAAAAAAAAAAAAAAAACAAAAAAAAAAAIAAAAAAAAA=</HashCode>
       <FileName>Assets\coin.cs</FileName>
     </TypeIdentifier>
   </Class>
@@ -53,7 +53,7 @@
     </TypeIdentifier>
   </Class>
   <Class Name="PlayerHazard">
-    <Position X="9.25" Y="4.75" Width="1.5" />
+    <Position X="7.5" Y="5.25" Width="1.5" />
     <TypeIdentifier>
       <HashCode>AAAAAACAAAAAAAAAAAAAAAAAQEAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\PlayerHazard.cs</FileName>
@@ -76,7 +76,7 @@
   <Class Name="Score">
     <Position X="7.5" Y="3.25" Width="1.5" />
     <TypeIdentifier>
-      <HashCode>AAAAAIAAAAAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
+      <HashCode>AAQAAAAAAgAAAQAAAAAAAAAAQAAAAAAAAAAAAAAAAAA=</HashCode>
       <FileName>Assets\Score.cs</FileName>
     </TypeIdentifier>
   </Class>

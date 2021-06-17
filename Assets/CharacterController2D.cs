@@ -40,7 +40,6 @@ public class CharacterController2D : MonoBehaviour
 		if (OnCrouchEvent == null)
 			OnCrouchEvent = new BoolEvent();
 	}
-
 	private void FixedUpdate()
 	{
 		bool wasGrounded = m_Grounded;
